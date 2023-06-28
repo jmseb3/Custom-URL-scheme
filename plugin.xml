@@ -22,6 +22,7 @@
   <issue>https://github.com/EddyVerbruggen/Custom-URL-scheme/issues</issue>
 
   <preference name="URL_SCHEME" />
+  <preference name="KAKAO_KEY" />
 
   <engines>
     <engine name="cordova" version=">=3.0.0"/>
@@ -39,6 +40,7 @@
           <key>CFBundleURLSchemes</key>
           <array>
             <string>$URL_SCHEME</string>
+            <string>kakao$KAKAO_KEY</string>
           </array>
         </dict>
       </array>
@@ -78,6 +80,13 @@
               android:host="$ANDROID_HOST"
               android:pathPrefix="$ANDROID_PATHPREFIX" />
       </intent-filter>
+      <intent-filter>
+        <action android:name="android.intent.action.VIEW" />
+        <category android:name="android.intent.category.DEFAULT" />
+        <category android:name="android.intent.category.BROWSABLE" />
+        <data android:host="kakaolink"
+        android:scheme="kakao$KAKAO_KEY"/>
+      </intent-filter>
     </config-file>
   </platform>
 
@@ -88,6 +97,7 @@
     <config-file target="package.appxmanifest" parent="/Package/Applications/Application/Extensions">
       <Extension Category="windows.protocol" StartPage="$WINDOWS_START_PAGE">
         <Protocol Name="$URL_SCHEME" />
+        <Protocol Name="kakao$KAKAO_KEY" />
       </Extension>
     </config-file>
 
@@ -103,16 +113,19 @@
     <config-file target="package.windows.appxmanifest" parent="/Package/Applications/Application/Extensions">
       <uap:Extension Category="windows.protocol" StartPage="$WINDOWS_START_PAGE">
         <uap:Protocol Name="$URL_SCHEME" />
+        <upa:Protocol Name="kakao$KAKAO_KEY" />
       </uap:Extension>
     </config-file>
     <config-file target="package.windows10.appxmanifest" parent="/Package/Applications/Application/Extensions">
       <uap:Extension Category="windows.protocol" StartPage="$WINDOWS_START_PAGE">
         <uap:Protocol Name="$URL_SCHEME" />
+        <upa:Protocol Name="kakao$KAKAO_KEY" />
       </uap:Extension>
     </config-file>
     <config-file target="package.phone.appxmanifest" parent="/Package/Applications/Application/Extensions">
       <uap:Extension Category="windows.protocol" StartPage="$WINDOWS_START_PAGE">
         <uap:Protocol Name="$URL_SCHEME" />
+        <upa:Protocol Name="kakao$KAKAO_KEY" />
       </uap:Extension>
     </config-file>
     <js-module src="www/windows/LaunchMyApp.js" name="LaunchMyApp">
@@ -132,6 +145,7 @@
     <config-file target="Properties/WMAppManifest.xml" parent="/Deployment/App" after="Tokens">
       <Extensions>
         <Protocol Name="$URL_SCHEME" NavUriFragment="encodedLaunchUri=%s" TaskID="_default" />
+        <Protocol Name="kakao$KAKAO_KEY" NavUriFragment="encodedLaunchUri=%s" TaskID="_default" />
       </Extensions>
     </config-file>
 
